@@ -25,7 +25,7 @@ const LoginPage = () => {
       }
       return (
             <div>
-                  {error && <div>ERROR</div>}
+                  {error && <div>{error}</div>}
                   {loading && <div>LOADING</div>}
                   <h1>Sign In</h1>
                   <form onSubmit = {submitHandler}>

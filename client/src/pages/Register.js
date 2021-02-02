@@ -33,7 +33,7 @@ const Register = () => {
       }
       return (
             <div>
-                  {error && <div>ERROR</div>}
+                  {error && <div>{error}</div>}
                   {loading && <div>LOADING</div>}
                   <h1>Sign Up</h1>
                   <form onSubmit={submitHandler}>
