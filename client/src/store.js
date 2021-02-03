@@ -2,12 +2,13 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { userLoginReducer, userRegisterReducer } from './reducers/userReducers'
-import { postsListReducer } from './reducers/postReducers'
+import { postsListReducer, postCreateReducer } from './reducers/postReducers'
 
 const reducer = combineReducers({
       userLogin: userLoginReducer,
       userRegister: userRegisterReducer,
-      postsList: postsListReducer
+      postsList: postsListReducer,
+      postCreate: postCreateReducer
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null

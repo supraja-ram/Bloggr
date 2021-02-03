@@ -1,4 +1,4 @@
-import { GET_POSTS_FAIL, GET_POSTS_REQUEST, GET_POSTS_SUCCESS } from '../constants/postConstants'
+import { GET_POSTS_FAIL, GET_POSTS_REQUEST, GET_POSTS_SUCCESS, CREATE_POST_REQUEST, CREATE_POST_SUCCESS, CREATE_POST_FAIL } from '../constants/postConstants'
 
 export const postsListReducer = (state = { blogs: [] }, action) => {
       switch (action.type) {
@@ -12,4 +12,17 @@ export const postsListReducer = (state = { blogs: [] }, action) => {
             default:
                   return state
       }
+}
+
+export const postCreateReducer = (state = {}, action) => { 
+      switch (action.type) { 
+            case CREATE_POST_REQUEST: 
+                  return { loading: true } 
+            case CREATE_POST_SUCCESS: 
+                  return { loading: false, blog: action.payload } 
+            case CREATE_POST_FAIL: 
+                  return { loading: false, error: action.payload } 
+            default: 
+                  return state 
+      } 
 }

@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import Register from './pages/Register';
-
+import AddArticle from './pages/AddArticle'
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
         <Route  exact path='/'><Home /></Route>
         <Route exact path='/login'><LoginPage /></Route>
         <Route exact path='/register'><Register /></Route>
+        <Route exact path='/create'><AddArticle /></Route>
       </Switch>
     </BrowserRouter>
   );

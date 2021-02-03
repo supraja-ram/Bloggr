@@ -1,23 +1,21 @@
 import React, { useState, useEffect} from 'react'
-import {useHistory, useLocation, Link} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {login} from '../actions/userActions'
 
 const LoginPage = () => {
       const [email, setEmail] = useState('')
       const [password, setPassword] = useState('')
-      const location = useLocation() 
       const history = useHistory()
-      const redirect = location.search ? location.search.split('=')[1] : '/'
       const dispatch = useDispatch()
       const userLogin = useSelector(state => state.userLogin)
       const { userInfo, loading, error } = userLogin
 
       useEffect(() => {
             if (userInfo) {
-                  history.push(redirect)
+                  history.push('/')
             }
-      }, [history, userInfo, redirect])
+      }, [history, userInfo])
 
       const submitHandler = (e) => {
             e.preventDefault()
@@ -35,7 +33,7 @@ const LoginPage = () => {
                         <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} value={password}></input>
                         <br></br>
                         <button type="submit">SUBMIT</button>
-                        <Link to = {redirect ? `/register?redirect=${redirect}` : '/register'}>New Customer ? Register here</Link>
+                        <Link to = '/register'>New Customer ? Register here</Link>
             </form>
             </div>
       )
