@@ -22,20 +22,24 @@ const LoginPage = () => {
             dispatch(login(email, password))
       }
       return (
-            <div>
-                  {error && <div>{error}</div>}
+            <main className = "section__auth">
+                  
                   {loading && <div>LOADING</div>}
-                  <h1>Sign In</h1>
+                  <div className= "form-container"><h1>LOGIN</h1>
+                  {error && <div className = "msg--error">{error}</div>}
                   <form onSubmit = {submitHandler}>
-                        <label>Email:     </label>
-                        <input type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} value={email}></input><br></br>
-                        <label>Password:     </label>
-                        <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} value={password}></input>
-                        <br></br>
-                        <button type="submit">SUBMIT</button>
-                        <Link to = '/register'>New Customer ? Register here</Link>
-            </form>
-            </div>
+                        <div className="form-group">
+                              <label>Email</label>
+                              <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} className = "form-control form-text"></input>
+                        </div>
+                        <div className="form-group">
+                              <label>Password</label>
+                              <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} className = "form-control form-text"></input>
+                        </div>
+                        <button type="submit" className = "btn btn-dark">LOGIN</button>
+                        <Link to = '/register' className = "link">New Customer ? Register here</Link>
+                  </form></div>
+            </main>
       )
 }
 

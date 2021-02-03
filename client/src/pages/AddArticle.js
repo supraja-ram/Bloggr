@@ -1,7 +1,6 @@
-import e from 'cors'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, useHistory, useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { createPost } from '../actions/postActions'
 
 const AddArticle = () => {
@@ -21,7 +20,7 @@ const AddArticle = () => {
             if (!userInfo) {
                   history.push('/login')
             }
-      }, [userInfo])
+      }, [userInfo, history])
 
       const createPostHandler = (e) => {
             e.preventDefault()

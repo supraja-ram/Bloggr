@@ -1,0 +1,31 @@
+.nav {
+  height: 15vh;
+  background-color: $color-secondary;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 7rem;
+  .nav-brand {
+    font-size: 2rem;
+    color: $color-primary;
+  }
+  .nav-link {
+    margin-left: 3rem;
+    font-size: 1.1rem;
+    color: $color-primary;
+  }
+  .active-link {
+    color: $color-tertiary;
+  }
+  .nav-btn {
+    color: $color-primary;
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+    margin-left: 3rem;
+    font-size: 1.1rem;
+    &:focus {
+      outline: none;
+    }
+  }
+}

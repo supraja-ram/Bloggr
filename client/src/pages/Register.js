@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import {useHistory, useLocation, Link} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {register} from '../actions/userActions'
 
@@ -10,17 +10,15 @@ const Register = () => {
       const [confirmPassword, setConfirmPassword] = useState('')
       const [message, setMessage] = useState('')
       const history = useHistory()
-      const location = useLocation()
-      const redirect = location.search ? location.search.split('=')[1] : '/'
       const dispatch = useDispatch()
       const userRegister = useSelector(state => state.userRegister)
       const { userInfo, loading, error } = userRegister
 
       useEffect(() => {
             if (userInfo) {
-                  history.push(redirect)
+                  history.push('/')
             }
-      }, [history, userInfo, redirect])
+      }, [history, userInfo])
 
       const submitHandler = (e) => {
             e.preventDefault()
@@ -32,25 +30,34 @@ const Register = () => {
             }
       }
       return (
-            <div>
-                  {error && <div>{error}</div>}
+            <main className = "section__auth">
                   {loading && <div>LOADING</div>}
-                  <h1>Sign Up</h1>
+                  <div className="form-container">
+                  <h1>REGISTER</h1>
+                  {error && <div className = "msg--error">{error}</div>}
                   <form onSubmit={submitHandler}>
-                        {message && <div>{message}</div>}
-                        <label>Name:     </label>
-                        <input type="text" placeholder="Enter name" onChange={(e) => setName(e.target.value)} value={name}></input><br></br>
-                        <label>Email:     </label>
-                        <input type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} value={email}></input><br></br>
-                        <label>Password:     </label>
-                        <input type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} value={password}></input>
-                        <br></br>
-                        <input type="password" placeholder="Confirm password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword}></input>
-                        <br></br>
-                        <button type="submit">SUBMIT</button>
-                        <Link to = {redirect ? `/register?redirect=${redirect}` : '/register'}>Login here</Link>
+                        {message && <div className = "msg--error">{message}</div>}
+                        <div className="form-group">
+                              <label>Name:     </label>
+                              <input type="text" onChange={(e) => setName(e.target.value)} value={name} className = "form-control form-text"></input>
+                        </div>
+                        <div className="form-group">
+                              <label>Email</label>
+                              <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} className = "form-control form-text"></input>
+                        </div>
+                        <div className="form-group">
+                              <label>Password</label>
+                              <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} className = "form-control form-text"></input>
+                              </div>
+                        <div className="form-group">
+                              <label>Confirm Password</label>
+                              <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className = "form-control form-text"></input>
+                        </div>
+                        <button type="submit" className = "btn btn-dark">REGISTER</button>
+                        <Link to = '/login' className = "link">Have an account? Login here</Link>
             </form>
-            </div>
+                  </div>
+            </main>
       )
 }
 
