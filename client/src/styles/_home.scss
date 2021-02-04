@@ -1,0 +1,12 @@
+.home-bg-img {
+  height: 85vh;
+  width: 100vw;
+  background: url("../images/home-bg.jpg") $color-tertiary;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+
+.section__home {
+  margin: 3rem 0 0;
+}

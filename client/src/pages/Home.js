@@ -5,7 +5,8 @@ const Home = () => {
       
       return (
             <div>
-                  <Blogs/>
+                  <div className = "home-bg-img"></div>
+                  <main><h1 className = "section__home">RECENT POSTS</h1><Blogs/></main>
             </div>
       )
 }

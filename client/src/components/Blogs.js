@@ -12,9 +12,8 @@ const Blogs = () => {
             dispatch(listPosts())
       }, [dispatch])
       console.log(blogs)
-      return loading ? (<div>Loading</div>) : error ? (<div>{error}</div>) : (<div>
+      return loading ? (<div>Loading</div>) : error ? (<div className = "msg--error">{error}</div>) : (<div>
       
-            <h1>RECENT POSTS</h1>
             {blogs.map((blog) => (
                   <BlogCard blog={blog} key={blog._id}/>
             ))}
