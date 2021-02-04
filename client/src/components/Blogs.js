@@ -11,7 +11,7 @@ const Blogs = () => {
       useEffect(() => {
             dispatch(listPosts())
       }, [dispatch])
-      console.log(blogs)
+      
       return loading ? (<div>Loading</div>) : error ? (<div className = "msg--error">{error}</div>) : (<div>
       
             {blogs.map((blog) => (

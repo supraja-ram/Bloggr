@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import Register from './pages/Register';
 import AddArticle from './pages/AddArticle'
+import BlogDetail from './components/BlogDetail';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path='/login'><LoginPage /></Route>
         <Route exact path='/register'><Register /></Route>
         <Route exact path='/create'><AddArticle /></Route>
+        <Route exact path='/blog/:id'><BlogDetail/></Route>
       </Switch>
     </BrowserRouter>
   );
