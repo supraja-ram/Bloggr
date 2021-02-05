@@ -12,7 +12,7 @@ const Blogs = () => {
             dispatch(listPosts())
       }, [dispatch])
       
-      return loading ? (<div>Loading</div>) : error ? (<div className = "alert alert--error">{error}</div>) : (<div>
+      return loading ? (<div>Loading</div>) : error ? (<div className = "alert alert--error">{error}</div>) : (<div className = "blog-cards">
       
             {blogs.map((blog) => (
                   <BlogCard blog={blog} key={blog._id}/>

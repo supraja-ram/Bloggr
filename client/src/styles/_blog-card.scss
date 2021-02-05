@@ -1,0 +1,40 @@
+.blog-cards {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+}
+
+.blog-card {
+  height: 300px;
+  width: 550px;
+  margin: 2rem auto;
+  border: 2px solid $color-secondary;
+  box-shadow: 7px 7px $color-secondary;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1rem;
+  &__name {
+    font-size: 1rem;
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  &__desc {
+    color: $color-gray;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  &__highlight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__link {
+    color: $color-secondary;
+    font-size: 1.1rem;
+    text-decoration: underline;
+  }
+}
