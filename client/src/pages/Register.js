@@ -8,7 +8,12 @@ const Register = () => {
       const [email, setEmail] = useState('')
       const [password, setPassword] = useState('')
       const [confirmPassword, setConfirmPassword] = useState('')
-      const [message, setMessage] = useState('')
+
+      const [nameError, setNameError] = useState('')
+      const [emailError, setEmailError] = useState('')
+      const [passwordError, setPasswordError] = useState('')
+      const [confirmPasswordError, setConfirmPasswordError] = useState('')
+
       const history = useHistory()
       const dispatch = useDispatch()
       const userRegister = useSelector(state => state.userRegister)
@@ -20,38 +25,76 @@ const Register = () => {
             }
       }, [history, userInfo])
 
+      const regex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+
       const submitHandler = (e) => {
             e.preventDefault()
-            if (password !== confirmPassword) {
-                  setMessage('Passwords do not match')
-            }
-            else {
+            if (email.trim().length > 0 && password.trim().length > 0 && email.match(regex) && password === confirmPassword) {
                   dispatch(register(email, password, name))
             }
+            else {
+                  if (!email.match(regex)) {
+                        setEmailError("Invalid email address")
+                  }
+                  if (password !== confirmPassword) {
+                        setConfirmPasswordError('Passwords do not match')
+                  }
+                  if (email.trim().length === 0) {
+                        setEmailError("Please enter your email address")
+                  }
+                  if (password.trim().length === 0) {
+                        setPasswordError("Please enter your password")
+                  }
+                  if (name.trim().length === 0) {
+                        setNameError("Please enter your name")
+                  }
+            }
+      }
+      const nameChangeHandler = (e) => {
+            setName(e.target.value)
+            setNameError('')
+      }
+
+      const emailChangeHandler = (e) => {
+            setEmail(e.target.value)
+            setEmailError('')
+      }
+
+      const passwordChangeHandler = (e) => {
+            setPassword(e.target.value)
+            setPasswordError('')
+      }
+      const confirmPasswordHandler = (e) => {
+            setConfirmPassword(e.target.value)
+            setConfirmPasswordError('')
       }
       return (
             <main className = "section__auth">
                   {loading && <div>LOADING</div>}
                   <div className="form-container">
                   <h1>REGISTER</h1>
-                  {error && <div className = "alert--error">{error}</div>}
+                  {error && <div className = "alert alert--error">{error}</div>}
                   <form onSubmit={submitHandler}>
-                        {message && <div className = "msg--error">{message}</div>}
+                        
                         <div className="form-group">
                               <label>Name:     </label>
-                              <input type="text" onChange={(e) => setName(e.target.value)} value={name} className = "form-control form-text"></input>
+                              <input type="text" onChange={nameChangeHandler} value={name} className="form-control form-text"></input>
+                              {nameError && <small className = "msg--error">{nameError}</small>}
                         </div>
                         <div className="form-group">
                               <label>Email</label>
-                              <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} className = "form-control form-text"></input>
+                              <input type="text" onChange={emailChangeHandler} value={email} className="form-control form-text"></input>
+                              {emailError && <small className = "msg--error">{emailError}</small>}
                         </div>
                         <div className="form-group">
                               <label>Password</label>
-                              <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} className = "form-control form-text"></input>
-                              </div>
+                              <input type="password" onChange={passwordChangeHandler} value={password} className="form-control form-text"></input>
+                              {passwordError && <small className = "msg--error">{passwordError}</small>}
+                        </div>
                         <div className="form-group">
                               <label>Confirm Password</label>
-                              <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className = "form-control form-text"></input>
+                              <input type="password" onChange={confirmPasswordHandler} value={confirmPassword} className="form-control form-text"></input>
+                              {confirmPasswordError && <small className = "msg--error">{confirmPasswordError}</small>}
                         </div>
                         <button type="submit" className = "btn btn--dark">REGISTER</button>
                         <Link to = '/login' className = "link">Have an account? Login here</Link>

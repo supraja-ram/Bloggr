@@ -90,12 +90,12 @@ const AddArticle = () => {
                         {successMessage && <div className="alert alert--success">{successMessage} &#127882;</div>}
                   <div className = "create-form-group">
                   <label>Title:</label>
-                              <input type="text" className="create-form-control create-form-text" name="title" value={title} onChange={titleChangeHandler} maxLength="60"/>
+                              <input type="text" className="create-form-control form-text" name="title" value={title} onChange={titleChangeHandler} maxLength="60"/>
                               {titleError && <small className = "msg--error">{titleError}</small>}
                   </div>
                   <div className = "create-form-group">
                   <label>Description:</label>
-                        <input type="text" className="create-form-control create-form-text" name="description" value={description} onChange={descriptionChangeHandler} maxLength="160"/>
+                        <input type="text" className="create-form-control form-text" name="description" value={description} onChange={descriptionChangeHandler} maxLength="160"/>
                         {descriptionError && <small className = "msg--error">{descriptionError}</small>}
                   </div>
                   <div className = "create-form-group">

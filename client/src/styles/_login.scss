@@ -8,6 +8,7 @@
   }
   .form-group {
     display: block;
+    margin: 1rem 0;
   }
   .form-control {
     display: block;
@@ -15,18 +16,6 @@
   label {
     font-size: 1.1rem;
     font-weight: 700;
-  }
-  .form-text {
-    padding: 0.8rem;
-    width: 100%;
-    border-radius: 50px;
-    border: 2px solid $color-secondary;
-    margin: 0.5rem 0 1.2rem 0;
-    font-family: inherit;
-    font-size: 1rem;
-    &:focus {
-      outline: none;
-    }
   }
   .btn {
     margin: 2rem auto 0.5rem;

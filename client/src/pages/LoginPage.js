@@ -1,13 +1,16 @@
 import React, { useState, useEffect} from 'react'
 import {useHistory, Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import {login} from '../actions/userActions'
+import { login } from '../actions/userActions'
 
 const LoginPage = () => {
       const [email, setEmail] = useState('')
       const [password, setPassword] = useState('')
+      const [emailError, setEmailError] = useState('')
+      const [passwordError, setPasswordError] = useState('')
       const history = useHistory()
       const dispatch = useDispatch()
+
       const userLogin = useSelector(state => state.userLogin)
       const { userInfo, loading, error } = userLogin
 
@@ -17,10 +20,33 @@ const LoginPage = () => {
             }
       }, [history, userInfo])
 
+      const regex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+
+      const emailChangeHandler = (e) => {
+            setEmail(e.target.value)
+            setEmailError('')
+      }
+
+      const passwordChangeHandler = (e) => {
+            setPassword(e.target.value)
+            setPasswordError('')
+      }
+
       const submitHandler = (e) => {
             e.preventDefault()
-            dispatch(login(email, password))
+            if (email.trim().length > 0 && password.trim().length > 0 && email.match(regex)) {
+                  dispatch(login(email, password))
+            }
+            else {
+                  if (email.trim().length === 0) {
+                        setEmailError("Please enter your email address")
+                  }
+                  if (password.trim().length === 0) {
+                        setPasswordError("Please enter your password")
+                  }
+            }
       }
+
       return (
             <main className = "section__auth">
                   
@@ -30,11 +56,13 @@ const LoginPage = () => {
                   <form onSubmit = {submitHandler}>
                         <div className="form-group">
                               <label>Email</label>
-                              <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} className = "form-control form-text"></input>
+                                    <input type="text" onChange={emailChangeHandler} value={email} className="form-control form-text"></input>
+                                    {emailError && <small className = "msg--error">{emailError}</small>}
                         </div>
                         <div className="form-group">
                               <label>Password</label>
-                              <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} className = "form-control form-text"></input>
+                                    <input type="password" onChange={passwordChangeHandler} value={password} className="form-control form-text"></input>
+                                    {passwordError && <small className = "msg--error">{passwordError}</small>}
                         </div>
                         <button type="submit" className = "btn btn--dark">LOGIN</button>
                         <Link to = '/register' className = "link">New Customer ? Register here</Link>
