@@ -34,7 +34,7 @@ const Register = () => {
                   {loading && <div>LOADING</div>}
                   <div className="form-container">
                   <h1>REGISTER</h1>
-                  {error && <div className = "msg--error">{error}</div>}
+                  {error && <div className = "alert--error">{error}</div>}
                   <form onSubmit={submitHandler}>
                         {message && <div className = "msg--error">{message}</div>}
                         <div className="form-group">
@@ -53,7 +53,7 @@ const Register = () => {
                               <label>Confirm Password</label>
                               <input type="password" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className = "form-control form-text"></input>
                         </div>
-                        <button type="submit" className = "btn btn-dark">REGISTER</button>
+                        <button type="submit" className = "btn btn--dark">REGISTER</button>
                         <Link to = '/login' className = "link">Have an account? Login here</Link>
             </form>
                   </div>

@@ -16,7 +16,7 @@ const BlogDetail = () => {
             dispatch(getPostDetails(id))
       }, [id, location, dispatch])
 
-      return loading ? <div>Loading ... </div> : error ? <div className="msg--error">{error}</div> :
+      return loading ? <div>Loading ... </div> : error ? <div className="alert--error">{error}</div> :
             (<div className = "section__blog-detail">
                   <h1>{blog.title}</h1>
                   <p>{blog.description}</p>

@@ -26,7 +26,7 @@ const LoginPage = () => {
                   
                   {loading && <div>LOADING</div>}
                   <div className= "form-container"><h1>LOGIN</h1>
-                  {error && <div className = "msg--error">{error}</div>}
+                  {error && <div className = "alert alert--error">{error}</div>}
                   <form onSubmit = {submitHandler}>
                         <div className="form-group">
                               <label>Email</label>
@@ -36,7 +36,7 @@ const LoginPage = () => {
                               <label>Password</label>
                               <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} className = "form-control form-text"></input>
                         </div>
-                        <button type="submit" className = "btn btn-dark">LOGIN</button>
+                        <button type="submit" className = "btn btn--dark">LOGIN</button>
                         <Link to = '/register' className = "link">New Customer ? Register here</Link>
                   </form></div>
             </main>

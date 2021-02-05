@@ -2,6 +2,13 @@ $color-primary: #ffffff;
 $color-secondary: #000000;
 $color-tertiary: #3bfed6;
 $color-gray: #8f8282;
+$color-info: #51cbee;
+$color-danger-1: #911e29;
+$color-danger-2: #f8d7da;
+$color-danger-3: hsl(354, 88%, 49%);
+$color-success-1: #155724;
+$color-success-2: #d4edda;
+$color-success-3: #359669;
 
 * {
   margin: 0;
@@ -15,17 +22,6 @@ a {
 
 .btn {
   cursor: pointer;
-  &:focus {
-    outline: none;
-  }
-  &__icon {
-    background-color: transparent;
-    border: none;
-  }
-}
-.btn-dark {
-  background-color: $color-secondary;
-  color: $color-primary;
   display: block;
   width: 40%;
   margin: auto;
@@ -34,25 +30,55 @@ a {
   font-family: inherit;
   font-size: 1.2rem;
   border: none;
+  &:focus {
+    outline: none;
+  }
+  &__icon {
+    background-color: transparent;
+    border: none;
+  }
+  &--dark {
+    background-color: $color-secondary;
+    color: $color-primary;
+  }
+  &--success {
+    background-color: $color-success-3;
+    color: $color-primary;
+  }
 }
+
 body {
   font-family: "Lato", sans-serif;
 }
 
 main {
-  margin: 0 10rem;
+  margin: 3rem 10rem;
 }
 
-.msg--error {
-  color: #721c24;
-  background: #f8d7da;
-  padding: 0.8rem;
+.alert {
+  padding: 1rem;
   text-align: center;
   border-radius: 10px;
   margin: 0 0 1rem 0;
+  &--error {
+    color: $color-danger-1;
+    background: $color-danger-2;
+  }
+  &--success {
+    color: $color-success-1;
+    background: $color-success-2;
+  }
+}
+
+.msg--error {
+  color: $color-danger-3;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
 }
 
 @import "./nav";
 @import "./login";
 @import "./home";
 @import "./blog";
+@import "./form";

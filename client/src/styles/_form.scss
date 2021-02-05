@@ -1,0 +1,39 @@
+.section__create {
+  width: 50%;
+  margin: 3rem auto;
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .create-form-group {
+    margin: 1rem 0;
+  }
+  .create-form-control,
+  .ql-container {
+    display: block;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+  .create-form-text,
+  .ql-editor,
+  .ql-toolbar {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid $color-secondary;
+    &:focus {
+      box-shadow: 0 0 5px $color-info;
+      border: 1px solid $color-info;
+      outline: none;
+      transition: all 0.4s ease-out;
+    }
+  }
+  .ql-editor {
+    white-space: normal !important;
+  }
+  label {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+}
