@@ -31,9 +31,10 @@ const BlogDetail = () => {
                   <h2>{blog.title}</h2>
                   <p className="blog-detail__description">{blog.description}</p>
                   <div className="blog-detail__highlight">
-                        <p className = "blog-detail__author">By {blog.name}</p>
+                        <p className = "blog-detail__author">By <strong>{blog.name}</strong></p>
                         {readingTime && <p className="blog-detail__duration">{readingTime}</p>}
                   </div>
+                  <hr className = "blog-detail__hr"></hr>
                   <div className = "blog-detail__content" dangerouslySetInnerHTML ={{__html: DOMPurify.sanitize(blog.content)}}></div>
             </main>)
 }
