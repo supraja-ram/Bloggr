@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import Register from './pages/Register';
 import AddArticle from './pages/AddArticle'
-import BlogDetail from './components/BlogDetail';
+import BlogDetail from './pages/BlogDetail';
 
 function App() {
   return (
