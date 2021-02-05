@@ -2,12 +2,14 @@ import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { getPostDetails } from '../actions/postActions'
+import DOMPurify from 'dompurify';
 
 const BlogDetail = () => {
       const postDetail = useSelector((state) => state.postDetail)
       const {loading, blog, error} = postDetail
       const location = useLocation()
       const id = location.pathname.split("/")[2]
+      
       const dispatch = useDispatch()
 
       useEffect(() => {
@@ -18,7 +20,7 @@ const BlogDetail = () => {
             (<div className = "section__blog-detail">
                   <h1>{blog.title}</h1>
                   <p>{blog.description}</p>
-                  <p>{blog.content}</p>
+                  <div dangerouslySetInnerHTML ={{__html: DOMPurify.sanitize(blog.content)}}></div>
             </div>)
 }
 
