@@ -40,7 +40,7 @@ const BlogDetail = () => {
             setMessage("Post deleted")
             setTimeout(function () {
                   history.push('/')
-            }, 3000)
+            }, 500)
       }
 
       return (

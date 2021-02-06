@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactQuill from "react-quill";
+import Modal from '../components/Modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { createPost } from '../actions/postActions'
@@ -65,10 +66,10 @@ const AddArticle = () => {
             e.preventDefault()
             if (title.trim().length > 0 && description.trim().length > 0 && text.trim().length > 0 && content.trim().length < 4000) {
                   dispatch(createPost(title.trim(), description.trim(), content.trim()))
-                  setSuccessMessage("Published !")
+                  setSuccessMessage("Published!")
                   setTimeout(function () {
                         history.push('/')
-                  }, 3000)
+                  }, 1000)
             }
             else {
                   if (title.trim().length === 0) {
@@ -84,10 +85,11 @@ const AddArticle = () => {
       }
 
       return (
-            <main className="section__create">
+            
+            <main className= 'section__create'>
+            {successMessage && <Modal message = {successMessage} type = "success"/>}
             <h2>Create</h2>
                   <form onSubmit={createPostHandler}>
-                        {successMessage && <div className="alert alert--success">{successMessage} &#127882;</div>}
                   <div className = "create-form-group">
                   <label>Title:</label>
                               <input type="text" className="create-form-control form-text" name="title" value={title} onChange={titleChangeHandler} maxLength="60"/>
