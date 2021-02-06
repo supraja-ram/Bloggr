@@ -6,9 +6,15 @@ import User from '../models/userModel.js'
 //@desc   Get all blog posts
 //@access Public
 
-const getAllPosts = asyncHandler(async(req,res)=>{
-      const posts = await Post.find().sort({date: -1})
-      res.json(posts)
+const getAllPosts = asyncHandler(async (req, res) => {
+      const pageSize = 8
+      const page = Number(req.query.pageNumber) || 0
+      const count = await Post.countDocuments({})
+      const posts = await Post.find().sort({date: -1}).limit(pageSize).skip(pageSize*page)
+      res.json({
+            totalPages: Math.ceil(count/pageSize),
+            posts
+      })
  })
 
 //@route  POST api/posts

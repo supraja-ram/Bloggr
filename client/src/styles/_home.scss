@@ -9,3 +9,22 @@
 .section__home {
   margin: 3rem 0 0;
 }
+.paginate-btn-group {
+  display: flex;
+  justify-content: center;
+  .paginate-btn {
+    cursor: pointer;
+    background-color: $color-primary;
+    border: 1px solid $color-gray;
+    padding: 0.8rem 1.4rem;
+    margin: 0 0.5rem;
+    &:hover {
+      color: $color-primary;
+      background-color: $color-secondary;
+    }
+  }
+  .page-active {
+    background-color: #000000;
+    color: white;
+  }
+}
