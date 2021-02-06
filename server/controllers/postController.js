@@ -1,3 +1,4 @@
+import e from 'express'
 import asyncHandler from 'express-async-handler'
 import Post from '../models/postModel.js'
 import User from '../models/userModel.js'
@@ -87,7 +88,63 @@ const deletePost = asyncHandler(async (req, res) => {
             await post.remove()
             res.json({ message: 'Post removed' })
       }
-      
 })
 
-export {getAllPosts, createPost, getPostByID, deletePost, updatePost}
+//@route  PUT api/posts/like/:id
+//@desc   Like a post
+//@access Private
+
+const likePost = asyncHandler(async (req, res) => {
+      const post = await Post.findById(req.params.id)
+      if (!post) {
+            res.status(400)
+            throw new Error("Post not found")
+      }
+      else {
+            const checkIfLiked = post.likes.filter((like) => (
+                  like.user.toString() == req.user._id
+            ))
+            if (checkIfLiked.length > 0) {
+                  res.status(400)
+                  throw new Error("Post already liked")
+            }
+            else {
+                  post.likes.unshift({ user: req.user._id })
+                  await post.save()
+                  res.json(post.likes)
+            }
+      }
+})
+
+//@route  PUT api/posts/unlike/:id
+//@desc   Unlike a post
+//@access Private
+
+const unlikePost = asyncHandler(async (req, res) => {
+      const post = await Post.findById(req.params.id)
+      if (!post) {
+            res.status(400)
+            throw new Error("Post not found")
+      }
+      else {
+            const checkIfLiked = post.likes.filter((like) => (
+                  like.user.toString() == req.user._id
+            ))
+            if (checkIfLiked.length === 0) {
+                  res.status(400)
+                  throw new Error("Post has not yet been liked")
+            }
+            else {
+                  const likedBy = post.likes.map((like) => (
+                        like.user.toString()
+                  ))
+                  const likedIdx = likedBy.indexOf(req.user._id)
+                  post.likes.splice(likedIdx, 1)
+                  await post.save()
+                  res.send(post.likes)
+            }
+      }
+})
+
+
+export {getAllPosts, createPost, getPostByID, deletePost, updatePost, likePost, unlikePost}
