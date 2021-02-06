@@ -1,4 +1,3 @@
-import e from 'express'
 import asyncHandler from 'express-async-handler'
 import Post from '../models/postModel.js'
 import User from '../models/userModel.js'

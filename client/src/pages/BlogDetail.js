@@ -1,12 +1,18 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
-import { getPostDetails } from '../actions/postActions'
+import { useLocation, useHistory } from 'react-router-dom'
+import { deletePost, getPostDetails } from '../actions/postActions'
 import DOMPurify from 'dompurify';
 
 const BlogDetail = () => {
+      const [message, setMessage] = useState('')
+
       const postDetail = useSelector((state) => state.postDetail)
-      const {loading, blog, error} = postDetail
+      const userLogin = useSelector((state) => state.userLogin)
+      const { userInfo } = userLogin
+      const { loading, blog, error } = postDetail
+      
+      const history = useHistory()
       const location = useLocation()
       const id = location.pathname.split("/")[2]
       
@@ -18,7 +24,7 @@ const BlogDetail = () => {
 
       let readingTime
       if (blog && blog.content) {
-            const length = blog.content.split(" ").length / 200 
+            const length = blog.content.split(" ").length / 200
             if (length < 1) {
                   readingTime = "Less than a min read"
             }
@@ -26,16 +32,32 @@ const BlogDetail = () => {
                   readingTime = `${Math.round(length)} min read`
             }
       }
-      return loading ? <div>Loading ... </div> : error ? <div className="alert alert--error">{error}</div> :
-            (<main className = "blog-detail">
-                  <h2>{blog.title}</h2>
-                  <p className="blog-detail__description">{blog.description}</p>
-                  <div className="blog-detail__highlight">
-                        <p className = "blog-detail__author">By <strong>{blog.name}</strong></p>
-                        {readingTime && <p className="blog-detail__duration">{readingTime}</p>}
-                  </div>
-                  <hr className = "blog-detail__hr"></hr>
-                  <div className = "blog-detail__content" dangerouslySetInnerHTML ={{__html: DOMPurify.sanitize(blog.content)}}></div>
+
+      const deletePostHandler = () => {
+            dispatch(deletePost(id))
+            setMessage("Post deleted")
+            setTimeout(function () {
+                  history.push('/')
+            }, 3000)
+      }
+
+      return (
+            <main className="blog-detail">
+            {loading && <div>Loading ...</div>}
+            { error && <div className="alert alert--error">{error}</div>}
+                  {message && <div className="alert alert--error">{message}</div>}      
+                  { blog && <div>
+                        {userInfo && userInfo._id === blog.user ? <div className="blog-detail__delete"><button className="btn" onClick={deletePostHandler}>Delete</button></div> : <div></div>}
+
+                        <h2>{blog.title}</h2>
+                        <p className="blog-detail__description">{blog.description}</p>
+                        <div className="blog-detail__highlight">
+                              <p className="blog-detail__author">By <strong>{blog.name}</strong></p>
+                              {readingTime && <p className="blog-detail__duration">{readingTime}</p>}
+                        </div>
+                        <hr className="blog-detail__hr"></hr>
+                        <div className="blog-detail__content" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.content) }}></div>
+                  </div>}
             </main>)
 }
 
