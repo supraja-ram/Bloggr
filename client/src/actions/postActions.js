@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_POSTS_REQUEST, GET_POSTS_SUCCESS, GET_POSTS_FAIL, CREATE_POST_REQUEST, CREATE_POST_SUCCESS, CREATE_POST_FAIL, POST_DETAIL_SUCCESS, POST_DETAIL_REQUEST, POST_DETAIL_FAIL, POST_DELETE_FAIL,   } from '../constants/postConstants'
+import { GET_POSTS_REQUEST, GET_POSTS_SUCCESS, GET_POSTS_FAIL, CREATE_POST_REQUEST, CREATE_POST_SUCCESS, CREATE_POST_FAIL, POST_DETAIL_SUCCESS, POST_DETAIL_REQUEST, POST_DETAIL_FAIL, POST_DELETE_REQUEST, POST_DELETE_SUCCESS, POST_DELETE_FAIL,   } from '../constants/postConstants'
 
 export const listPosts = () => async (dispatch) => {
       try {
@@ -78,7 +78,7 @@ export const getPostDetails = (id) => async (dispatch) => {
 export const deletePost = (id) => async(dispatch) => {
       try {
             dispatch({
-                  type: POST_DETAIL_REQUEST
+                  type: POST_DELETE_REQUEST
             })
 
             const userInfo = JSON.parse(localStorage.getItem('userInfo')) 
@@ -90,7 +90,7 @@ export const deletePost = (id) => async(dispatch) => {
             const { data } = await axios.delete(`/api/posts/${id}`, config)
 
             dispatch({
-                  type: POST_DETAIL_SUCCESS
+                  type: POST_DELETE_SUCCESS
             })
       }
       catch (error) {
