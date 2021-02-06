@@ -18,9 +18,9 @@ const Register = () => {
       const dispatch = useDispatch()
       const userRegister = useSelector(state => state.userRegister)
       const { userInfo, loading, error } = userRegister
-
+      const userLogin = useSelector(state => state.userLogin)
       useEffect(() => {
-            if (userInfo) {
+            if (userLogin.userInfo || userRegister.userInfo) {
                   history.push('/')
             }
       }, [history, userInfo])
