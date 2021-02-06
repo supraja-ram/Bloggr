@@ -95,7 +95,7 @@ const AddArticle = () => {
                   </div>
                   <div className = "create-form-group">
                   <label>Description:</label>
-                        <input type="text" className="create-form-control form-text" name="description" value={description} onChange={descriptionChangeHandler} maxLength="160"/>
+                        <textarea className="create-form-control form-text" name="description" value={description} onChange={descriptionChangeHandler} maxLength="160"/>
                         {descriptionError && <small className = "msg--error">{descriptionError}</small>}
                   </div>
                   <div className = "create-form-group">

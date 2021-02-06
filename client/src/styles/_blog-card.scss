@@ -1,11 +1,13 @@
 .blog-cards {
   display: grid;
-  grid-template-columns: 0.5fr 0.5fr;
+  grid-template-columns: 0.33fr 0.33fr 0.33fr;
+  gap: 1.5rem;
 }
 
 .blog-card {
-  height: 300px;
-  width: 550px;
+  overflow: hidden;
+  height: 450px;
+  width: 100%;
   margin: 2rem auto;
   border: 2px solid $color-secondary;
   box-shadow: 7px 7px $color-secondary;
@@ -36,5 +38,27 @@
     color: $color-secondary;
     font-size: 1.1rem;
     text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .blog-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .blog-card {
+    height: 300px;
+
+    &__highlight {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .blog-card {
+    height: 400px;
   }
 }

@@ -1,23 +1,16 @@
-.home-bg-img {
-  height: 85vh;
-  background: url("../images/home-bg.jpg") $color-tertiary;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-blend-mode: multiply;
-}
-
 .section__home {
   margin: 3rem 0 0;
+  text-align: center;
 }
 .paginate-btn-group {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   .paginate-btn {
-    cursor: pointer;
     background-color: $color-primary;
-    border: 1px solid $color-gray;
+    border: 1px solid $color-secondary;
     padding: 0.8rem 1.4rem;
-    margin: 0 0.5rem;
+    margin: 0.5rem;
     &:hover {
       color: $color-primary;
       background-color: $color-secondary;

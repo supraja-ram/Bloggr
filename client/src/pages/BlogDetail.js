@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useHistory } from 'react-router-dom'
-import { deletePost, getPostDetails } from '../actions/postActions'
+import {IconContext} from 'react-icons'
+import {BsFillTrashFill} from 'react-icons/bs'
 import DOMPurify from 'dompurify';
+import { deletePost, getPostDetails } from '../actions/postActions'
 
 const BlogDetail = () => {
       const [message, setMessage] = useState('')
@@ -47,7 +49,10 @@ const BlogDetail = () => {
             { error && <div className="alert alert--error">{error}</div>}
                   {message && <div className="alert alert--error">{message}</div>}      
                   { blog && <div>
-                        {userInfo && userInfo._id === blog.user ? <div className="blog-detail__delete"><button className="btn" onClick={deletePostHandler}>Delete</button></div> : <div></div>}
+                        {userInfo && userInfo._id === blog.user && 
+                              <div><button onClick={deletePostHandler} className="blog-detail__delete">
+                              <IconContext.Provider value={{ className: 'delete-icons' }}><BsFillTrashFill /></IconContext.Provider>
+                        </button></div>}
 
                         <h2>{blog.title}</h2>
                         <p className="blog-detail__description">{blog.description}</p>

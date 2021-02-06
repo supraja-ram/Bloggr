@@ -4,7 +4,6 @@
   h1 {
     text-align: center;
     margin-bottom: 1rem;
-    font-size: 2.5rem;
   }
   .form-group {
     display: block;
@@ -24,5 +23,17 @@
     float: right;
     color: $color-secondary;
     text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .form-container {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .form-container {
+    width: 90%;
   }
 }

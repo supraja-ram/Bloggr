@@ -10,7 +10,7 @@ import BlogDetail from './pages/BlogDetail';
 function App() {
   return (
     <BrowserRouter>
-      <Navbar/>
+    <Navbar/>
       <Switch>
         <Route  exact path='/'><Home /></Route>
         <Route exact path='/login'><LoginPage /></Route>

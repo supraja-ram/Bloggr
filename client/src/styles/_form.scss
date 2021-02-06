@@ -22,4 +22,13 @@
     font-size: 1.1rem;
     font-weight: 700;
   }
+  textarea {
+    height: 100px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .section__create {
+    width: 90%;
+  }
 }
