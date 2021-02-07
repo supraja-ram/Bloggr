@@ -49,11 +49,6 @@ const BlogDetail = () => {
             { error && <div className="alert alert--error">{error}</div>}
                   {message && <div className="alert alert--error">{message}</div>}      
                   { blog && <div>
-                        {userInfo && userInfo._id === blog.user && 
-                              <div><button onClick={deletePostHandler} className="blog-detail__delete">
-                              <IconContext.Provider value={{ className: 'delete-icons' }}><BsFillTrashFill /></IconContext.Provider>
-                        </button></div>}
-
                         <h2>{blog.title}</h2>
                         <p className="blog-detail__description">{blog.description}</p>
                         <div className="blog-detail__highlight">
@@ -61,6 +56,10 @@ const BlogDetail = () => {
                               {readingTime && <p className="blog-detail__duration">{readingTime}</p>}
                         </div>
                         <hr className="blog-detail__hr"></hr>
+                        {userInfo && userInfo._id === blog.user && 
+                              <div><button onClick={deletePostHandler} className="blog-detail__delete">
+                              <IconContext.Provider value={{ className: 'delete-icons' }}><BsFillTrashFill /></IconContext.Provider>
+                        </button></div>}
                         <div className="blog-detail__content" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.content) }}></div>
                   </div>}
             </main>)

@@ -23,7 +23,7 @@ const Register = () => {
             if (userLogin.userInfo || userRegister.userInfo) {
                   history.push('/')
             }
-      }, [history, userInfo])
+      }, [history, userRegister.userInfo, userLogin.userInfo])
 
       const regex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
 
