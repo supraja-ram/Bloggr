@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import Register from './pages/Register';
 import AddArticle from './pages/AddArticle'
 import BlogDetail from './pages/BlogDetail';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   return (
@@ -16,8 +17,10 @@ function App() {
         <Route exact path='/login'><LoginPage /></Route>
         <Route exact path='/register'><Register /></Route>
         <Route exact path='/create'><AddArticle /></Route>
-        <Route exact path='/blog/:id'><BlogDetail/></Route>
+        <Route exact path='/blog/:id'><BlogDetail /></Route>
+        <Route exact path="*"><ErrorPage/></Route>
       </Switch>
+      
     </BrowserRouter>
   );
 }
