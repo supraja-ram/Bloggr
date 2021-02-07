@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react'
 import {useHistory, Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {register} from '../actions/userActions'
+import Spinner from '../components/Spinner'
 
 const Register = () => {
       const [name, setName] = useState('')
@@ -70,7 +71,7 @@ const Register = () => {
       }
       return (
             <main className = "section__auth">
-                  {loading && <div>LOADING</div>}
+                  {loading && <div><Spinner/></div>}
                   <div className="form-container">
                   <h1>REGISTER</h1>
                   {error && <div className = "alert alert--error">{error}</div>}

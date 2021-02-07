@@ -5,6 +5,7 @@ import {IconContext} from 'react-icons'
 import {BsFillTrashFill} from 'react-icons/bs'
 import DOMPurify from 'dompurify';
 import { deletePost, getPostDetails } from '../actions/postActions'
+import Spinner from '../components/Spinner'
 
 const BlogDetail = () => {
       const [message, setMessage] = useState('')
@@ -45,7 +46,7 @@ const BlogDetail = () => {
 
       return (
             <main className="blog-detail">
-            {loading && <div>Loading ...</div>}
+            {loading && <div><Spinner/></div>}
             { error && <div className="alert alert--error">{error}</div>}
                   {message && <div className="alert alert--error">{message}</div>}      
                   { blog && <div>

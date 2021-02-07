@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react'
 import {useHistory, Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { login } from '../actions/userActions'
+import Spinner from '../components/Spinner'
 
 const LoginPage = () => {
       const [email, setEmail] = useState('')
@@ -50,7 +51,7 @@ const LoginPage = () => {
       return (
             <main className = "section__auth">
                   
-                  {loading && <div>LOADING</div>}
+                  {loading && <div><Spinner/></div>}
                   <div className= "form-container"><h1>LOGIN</h1>
                   {error && <div className = "alert alert--error">{error}</div>}
                   <form onSubmit = {submitHandler}>
