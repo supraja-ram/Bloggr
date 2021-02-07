@@ -3,6 +3,7 @@ import ReactQuill from "react-quill";
 import Modal from '../components/Modal'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import { Helmet } from "react-helmet";
 import { createPost } from '../actions/postActions'
 
 const AddArticle = () => {
@@ -85,9 +86,11 @@ const AddArticle = () => {
       }
 
       return (
-            
             <main className= 'section__create'>
-            {successMessage && <Modal message = {successMessage} type = "success"/>}
+            {successMessage && <Modal message={successMessage} type="success" />}
+            <Helmet>
+                  <title>Create</title>
+            </Helmet>
             <h2>Create</h2>
                   <form onSubmit={createPostHandler}>
                   <div className = "create-form-group">

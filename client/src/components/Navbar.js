@@ -16,7 +16,7 @@ const Navbar = () => {
       return (
             <header>
             <nav className="nav">
-                  <NavLink to = '/'><h1 className = "nav-brand">BLOG</h1></NavLink>            
+                  <NavLink to = '/'><h1 className = "nav-brand">BLOGGR</h1></NavLink>            
                   <div className = {`nav-links ${hidden ? '' : 'hidden'}`}>
                         <NavLink to='/create' className = "nav-link" activeClassName="active-link">Create</NavLink>
                         {userInfo ?

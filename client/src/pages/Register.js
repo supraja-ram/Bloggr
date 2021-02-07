@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import {useHistory, Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { Helmet } from "react-helmet";
 import {register} from '../actions/userActions'
 import Spinner from '../components/Spinner'
 
@@ -70,7 +71,10 @@ const Register = () => {
             setConfirmPasswordError('')
       }
       return (
-            <main className = "section__auth">
+            <main className="section__auth">
+                  <Helmet>
+                        <title>Register </title>
+                  </Helmet>
                   {loading && <div><Spinner/></div>}
                   <div className="form-container">
                   <h1>REGISTER</h1>

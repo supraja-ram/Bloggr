@@ -4,6 +4,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import {IconContext} from 'react-icons'
 import {BsFillTrashFill} from 'react-icons/bs'
 import DOMPurify from 'dompurify';
+import { Helmet } from "react-helmet";
 import { deletePost, getPostDetails } from '../actions/postActions'
 import Spinner from '../components/Spinner'
 
@@ -43,13 +44,15 @@ const BlogDetail = () => {
                   history.push('/')
             }, 500)
       }
-
       return (
             <main className="blog-detail">
             {loading && <div><Spinner/></div>}
             { error && <div className="alert alert--error">{error}</div>}
                   {message && <div className="alert alert--error">{message}</div>}      
                   { blog && <div>
+                        <Helmet>
+                              <title>{blog.title}</title>
+                         </Helmet>
                         <h2>{blog.title}</h2>
                         <p className="blog-detail__description">{blog.description}</p>
                         <div className="blog-detail__highlight">
