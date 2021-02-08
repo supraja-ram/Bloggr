@@ -40,6 +40,9 @@ const LoginPage = () => {
                   dispatch(login(email, password))
             }
             else {
+                  if (!email.match(regex)) {
+                        setEmailError("Invalid email address")
+                  }
                   if (email.trim().length === 0) {
                         setEmailError("Please enter your email address")
                   }
