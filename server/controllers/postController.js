@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler'
+import { cloudinary } from '../cloudinary/index.js'
 import Post from '../models/postModel.js'
 import User from '../models/userModel.js'
 
@@ -22,17 +23,21 @@ const getAllPosts = asyncHandler(async (req, res) => {
 //@access Private
 const createPost = (asyncHandler(async (req, res) => {
       const user = await User.findById(req.user._id)
-      const {title, description, content} = req.body
+      const { title, description, content, image } = req.body
+      const uploadedImage = await cloudinary.uploader.upload(image)
       const newPost = new Post({
             title,
             description,
             content,
             user: req.user._id,
-            name: user.name
+            name: user.name,
+            image: {
+                  cloud_name: process.env.CLOUDINARY_NAME,
+                  imageID: uploadedImage.public_id
+            }
       })
       const post = await newPost.save()
       res.status(201).json(post)
-      
 }))
 
 //@route  GET api/posts/:id

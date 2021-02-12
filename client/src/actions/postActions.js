@@ -28,7 +28,7 @@ export const listPosts = (pageNumber = '') => async (dispatch) => {
       }
 }
 
-export const createPost = (title, description, content) => async (dispatch) => { 
+export const createPost = (title, description, content, image) => async (dispatch) => { 
       try { 
             dispatch({ 
                   type: CREATE_POST_REQUEST 
@@ -41,7 +41,7 @@ export const createPost = (title, description, content) => async (dispatch) => {
                   Authorization: `Bearer ${userInfo.token}`, 
                 }, 
             }  
-            const { data } = await axios.post('api/posts/', { title, description, content }, config) 
+            const { data } = await axios.post('api/posts/', { title, description, content, image }, config) 
             dispatch({ 
                 type: CREATE_POST_SUCCESS, 
                 payload: data 

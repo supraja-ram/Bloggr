@@ -69,8 +69,7 @@ const AddArticle = () => {
       const createPostHandler = (e) => {
             e.preventDefault()
             if (title.trim().length > 0 && description.trim().length > 0 && text.trim().length > 0 && content.trim().length < 4000 && preview) {
-                  dispatch(createPost(title.trim(), description.trim(), content.trim()))
-                  upload(preview)
+                  dispatch(createPost(title.trim(), description.trim(), content.trim(), preview))
                   setSuccessMessage("Published!")
                   setTimeout(function () {
                         history.push('/')
@@ -103,10 +102,6 @@ const AddArticle = () => {
             reader.onloadend = () => {
                   setPreview(reader.result)
             }
-      }
-
-      const upload = (base64EncodedImage) => {
-            console.log(base64EncodedImage)
       }
 
       return (

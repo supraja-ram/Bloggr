@@ -24,6 +24,16 @@ const postSchema = mongoose.Schema({
             type: String,
             required: true
       },
+      image: {
+            cloud_name: {
+                  type: String, 
+                  required: true
+            },
+            imageID: {
+                  type: String,
+                  required: true
+            }
+      },
       likes: [
             {
                   user: {
