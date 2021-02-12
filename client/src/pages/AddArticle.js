@@ -11,12 +11,15 @@ const AddArticle = () => {
       const [description, setDescription] = useState('')
       const [content, setContent] = useState('')
       const [text, setText] = useState('')
+      const [file, setFile] = useState('')
+      const [preview, setPreview] = useState('')
 
       const [successMessage, setSuccessMessage] = useState('')
 
       const [titleError, setTitleError] = useState('')
       const [descriptionError, setDescriptionError] = useState('')
       const [contentError, setContentError] = useState('')
+      const [imageError, setImageError] = useState('')
 
       const dispatch = useDispatch()
       const userLogin = useSelector((state) => state.userLogin)
@@ -65,8 +68,9 @@ const AddArticle = () => {
 
       const createPostHandler = (e) => {
             e.preventDefault()
-            if (title.trim().length > 0 && description.trim().length > 0 && text.trim().length > 0 && content.trim().length < 4000) {
+            if (title.trim().length > 0 && description.trim().length > 0 && text.trim().length > 0 && content.trim().length < 4000 && preview) {
                   dispatch(createPost(title.trim(), description.trim(), content.trim()))
+                  upload(preview)
                   setSuccessMessage("Published!")
                   setTimeout(function () {
                         history.push('/')
@@ -82,7 +86,27 @@ const AddArticle = () => {
                   if (text.trim().length === 0) {
                         setContentError("Content is required")
                   }
+                  if (!preview) {
+                        setImageError("Please upload an image")
+                  }
             }
+      }
+      const onFileChange = (e) => {
+            setImageError('')
+            const inputFile = e.target.files[0]
+            imagePreview(inputFile)
+      }
+
+      const imagePreview = (file) => {
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onloadend = () => {
+                  setPreview(reader.result)
+            }
+      }
+
+      const upload = (base64EncodedImage) => {
+            console.log(base64EncodedImage)
       }
 
       return (
@@ -108,6 +132,12 @@ const AddArticle = () => {
                               <ReactQuill value={content} onChange={onEditorChange} modules={modules} formats={formats} className="create-form-control create-form-textarea"/>
                         {contentError && <small className = "msg--error">{contentError}</small>}
                   </div>
+                  <div>
+                        <label>Upload header image</label>
+                        <input type="file" value={file} onChange={onFileChange} className = "file-input"></input>  
+                        {preview && <img src={preview} className = "image-preview"/>}  
+                        {imageError && <small className = "msg--error">{imageError}</small>}      
+                  </div>      
                   <button type = "submit" className = "btn btn--success">Publish</button>
             </form>
             </main>
