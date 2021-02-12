@@ -42,6 +42,10 @@ button {
     background-color: $color-success-3;
     color: $color-primary;
   }
+  &--warning {
+    background-color: $color-danger-3;
+    color: $color-primary;
+  }
 }
 
 .form-text,

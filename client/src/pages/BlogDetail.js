@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useHistory } from 'react-router-dom'
-import {IconContext} from 'react-icons'
-import {BsFillTrashFill} from 'react-icons/bs'
 import DOMPurify from 'dompurify';
 import { Helmet } from "react-helmet";
+import {Image} from 'cloudinary-react'
 import { deletePost, getPostDetails } from '../actions/postActions'
 import Spinner from '../components/Spinner'
 
@@ -54,16 +53,17 @@ const BlogDetail = () => {
                               <title>{blog.title}</title>
                          </Helmet>
                         <h2>{blog.title}</h2>
+                        {userInfo && userInfo._id === blog.user && 
+                              <div><button onClick={deletePostHandler} className="blog-detail__delete btn btn--warning">
+                              DELETE POST
+                        </button></div>}
                         <p className="blog-detail__description">{blog.description}</p>
                         <div className="blog-detail__highlight">
                               <p className="blog-detail__author">By <strong>{blog.name}</strong></p>
                               {readingTime && <p className="blog-detail__duration">{readingTime}</p>}
                         </div>
                         <hr className="blog-detail__hr"></hr>
-                        {userInfo && userInfo._id === blog.user && 
-                              <div><button onClick={deletePostHandler} className="blog-detail__delete">
-                              <IconContext.Provider value={{ className: 'delete-icons' }}><BsFillTrashFill /></IconContext.Provider>
-                        </button></div>}
+                        {blog.image && <Image cloudName={blog.image.cloud_name} publicId={blog.image.imageID} className = "blog-detail__image"/>}
                         <div className="blog-detail__content" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.content) }}></div>
                   </div>}
             </main>)

@@ -40,13 +40,14 @@
     line-height: 36px;
   }
   &__delete {
+    font-weight: 700;
+    font-size: 1rem;
+    max-width: 50%;
+    float: right;
+  }
+  &__image {
     margin: 1rem 0 0;
-    background-color: transparent;
-    border: none;
-    .delete-icons {
-      color: $color-danger-3;
-      transform: scale(2);
-    }
+    width: 100%;
   }
 }
 

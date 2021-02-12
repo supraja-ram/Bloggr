@@ -70,10 +70,10 @@ const AddArticle = () => {
             e.preventDefault()
             if (title.trim().length > 0 && description.trim().length > 0 && text.trim().length > 0 && content.trim().length < 4000 && preview) {
                   dispatch(createPost(title.trim(), description.trim(), content.trim(), preview))
-                  setSuccessMessage("Published!")
+                  setSuccessMessage("Published! Redirecting ...")
                   setTimeout(function () {
                         history.push('/')
-                  }, 1000)
+                  }, 3000)
             }
             else {
                   if (title.trim().length === 0) {
@@ -92,8 +92,15 @@ const AddArticle = () => {
       }
       const onFileChange = (e) => {
             setImageError('')
+            setPreview('')
             const inputFile = e.target.files[0]
-            imagePreview(inputFile)
+            console.log(inputFile)
+            if (inputFile.type === "image/png" || inputFile.type === "image/jpeg" || inputFile.type === "image/jpg") {
+                  imagePreview(inputFile)
+            }
+            else {
+                  setImageError("Please upload image of type jpeg/jpg/png")
+            }
       }
 
       const imagePreview = (file) => {
@@ -128,9 +135,9 @@ const AddArticle = () => {
                         {contentError && <small className = "msg--error">{contentError}</small>}
                   </div>
                   <div>
-                        <label>Upload header image</label>
+                        <label>Upload an image:</label>
                         <input type="file" value={file} onChange={onFileChange} className = "file-input"></input>  
-                        {preview && <img src={preview} className = "image-preview"/>}  
+                        {preview && <img src={preview} className = "image-preview" alt="preview"/>}  
                         {imageError && <small className = "msg--error">{imageError}</small>}      
                   </div>      
                   <button type = "submit" className = "btn btn--success">Publish</button>
